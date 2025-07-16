@@ -1,0 +1,132 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Main background color */
+    color: black; /* Black text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white; /* White background for header */
+    border-bottom: 1px solid #dcdcdc; /* Soft grey border */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.btn-primary {
+    background-color: #003366; /* Navy Blue for primary buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #002244; /* Darker Navy Blue for hover */
+}
+
+.signup-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between cards */
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for card effect */
+}
+
+.quote-card {
+    max-width: 600px; /* Optional max-width for quote card */
+}
+
+.quote-card h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.signup-card {
+    max-width: 600px; /* Optional max-width for signup card */
+}
+
+.signup-card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #003366; /* Navy Blue for primary buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #002244; /* Darker Navy Blue for hover */
+}
+
+.signup-card p {
+    margin-top: 20px;
+}
+
+footer {
+    background-color: white; /* White background for footer */
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #dcdcdc; /* Soft grey border */
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: black;
+}

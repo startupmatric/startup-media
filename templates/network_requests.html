@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Network Requests</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Network Requests</h2>
+
+        <!-- Incoming Requests -->
+        <div class="incoming-requests">
+            <h3>Incoming Requests</h3>
+            {% if incoming_requests %}
+                <ul>
+                    {% for request in incoming_requests %}
+                        <li>
+                            <p>{{ request.requester_username }} wants to connect with you.</p>
+                            <form action="{{ url_for('accept_request', request_id=request.id) }}" method="post" style="display:inline;">
+                                <button type="submit">Accept</button>
+                            </form>
+                            <form action="{{ url_for('reject_request', request_id=request.id) }}" method="post" style="display:inline;">
+                                <button type="submit">Reject</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No incoming requests.</p>
+            {% endif %}
+        </div>
+
+        <!-- Outgoing Requests -->
+        <div class="outgoing-requests">
+            <h3>Outgoing Requests</h3>
+            {% if outgoing_requests %}
+                <ul>
+                    {% for request in outgoing_requests %}
+                        <li>
+                            <p>You requested to connect with {{ request.target_username }}. Status: {{ request.status }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No outgoing requests.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

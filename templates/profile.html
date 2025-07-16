@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Profile.css') }}">
+  <script defer src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-trigger" data-tab="individual">Individual Profile</button>
+      <button class="tab-trigger" data-tab="startup">Startup Profile</button>
+    </div>
+
+    <div class="tab-content" id="individual">
+      <div class="card">
+        <div class="card-header">
+          <div class="avatar">
+            <img src="{{ user.avatar }}" alt="{{ user.username }}">
+            <div class="avatar-fallback">{{ user.username[0] }}</div>
+          </div>
+          <div>
+            <h3 class="card-title">{{ user.username }}</h3>
+            <p class="card-description">{{ user.bio }}</p>
+            <p class="location">{{ user.location }}</p>
+          </div>
+        </div>
+        <div class="card-content">
+          <section>
+            <h4>Biography</h4>
+            <p>{{ user.about }}</p>
+          </section>
+
+          <section>
+            <h4>Experience</h4>
+            <ul>
+              {% for experience in experiences %}
+                <li>{{ experience.title }} at {{ experience.company }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          <section>
+            <h4>Skills & Interests</h4>
+            <div class="badges">
+              {% for skill in skills %}
+                <span class="badge">{{ skill.skill }}</span>
+              {% endfor %}
+            </div>
+          </section>
+
+          <section>
+            <h4>Contact Information</h4>
+            <p>Email: {{ user.email }}</p>
+            <p>LinkedIn: <a href="{{ user.linkedin }}">{{ user.linkedin }}</a></p>
+            <p>Website: <a href="{{ user.website }}">{{ user.website }}</a></p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    {% if startup %}
+    <div class="tab-content" id="startup">
+      <div class="card">
+        <div class="card-header">
+          <h3>{{ startup.name }}</h3>
+          <p>{{ startup.description }}</p>
+        </div>
+        <div class="card-content">
+          <section>
+            <h4>Milestones</h4>
+            <p>{{ startup.milestones }}</p>
+          </section>
+
+          <section>
+            <h4>Funding Stage</h4>
+            <p>{{ startup.funding_stage }}</p>
+          </section>
+          
+          <section>
+            <h4>Vision & Mission</h4>
+            <p>{{ startup.vision }} | {{ startup.mission }}</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

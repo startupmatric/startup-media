@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/applications.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}" class="logout-button">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <h2>Startup Applications</h2>
+        
+        {% if applications %}
+            <div class="card-container">
+                {% for application in applications %}
+                    <div class="card-content">
+                        <h2>{{ application.startup_name }}</h2>
+                        <p><strong>Username:</strong> {{ application.username }}</p>
+                        <p><strong>Problem Statement:</strong> {{ application.problem_statement }}</p>
+                        <p><strong>Solution Overview:</strong> {{ application.solution_overview }}</p>
+                        <p><strong>Target Market:</strong> {{ application.target_market }}</p>
+                        <p><strong>Business Model:</strong> {{ application.business_model }}</p>
+                        <p><strong>Revenue Streams:</strong> {{ application.revenue_streams }}</p>
+                        <p><strong>Financial Projections:</strong> {{ application.financial_projections }}</p>
+                        <p><strong>Funding Needed:</strong> ${{ application.funding_needed }}</p>
+                        <!-- Feedback Section for Admins -->
+                        {% if session['is_admin'] %}
+                            <form method="POST" action="{{ url_for('submit_feedback', application_id=application.id) }}">
+                                <label for="feedback">Provide Feedback:</label>
+                                <textarea id="feedback" name="feedback" required></textarea>
+                                <button type="submit">Submit Feedback</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No applications found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

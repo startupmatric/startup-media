@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Startup Matrix - Home</title>
+</head>
+<body>
+    <header>
+        <div class="logo">Startup Matrix</div>
+        <div class="navbar-center">
+            <input type="text" class="search-bar" placeholder="Search...">
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Left Navigation -->
+        <div class="left-nav">
+            <ul>
+                <li><a href="{{ url_for('user_profile', username=session['username']) }}">Profile</a></li>
+                <li><a href="{{ url_for('messages') }}">Messages</a></li>
+                <li><a href="{{ url_for('network_requests') }}">Network Requests</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('submit_idea') }}">Upload Pitch</a></li>
+            </ul>
+        </div>
+
+        <!-- Middle Content (Posts and Post Form) -->
+        <div class="middle-content">
+            <h2>Welcome, {{ session['username'] }}</h2>
+            <div class="post-creation">
+                <form id="create-post-form" method="post" enctype="multipart/form-data" action="{{ url_for('create_post') }}">
+                    <textarea id="post-content" name="content" rows="4" placeholder="What's on your mind?" required></textarea>
+                    <div id="image-upload">
+                        <input type="file" id="image-input" name="images" accept="image/*" multiple>
+                        <label for="image-input">Upload Image</label>
+                    </div>
+                    <button type="submit" id="post-submit">Post</button>
+                </form>
+            </div>
+
+            <div class="post-list">
+                {% for post in posts %}
+                    <div class="post-container">
+                        <div class="post-header">
+                            <p><strong>{{ post.username }}</strong></p>
+                        </div>
+                        <div class="post-content">
+                            <p>{{ post.content }}</p>
+                            {% if post.images %}
+                                <div class="post-images">
+                                    {% for image in post.images %}
+                                        <img src="{{ url_for('static', filename='uploads/' + image['image_path']) }}" alt="Post image" class="post-image">
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="post-footer">
+                            <form action="{{ url_for('like_post', post_id=post.id) }}" method="post" style="display:inline;">
+                                <button type="submit" style="color: {{ 'blue' if post.liked else 'black' }};">👍</button>
+                                <span>{{ post.like_count }}</span>
+                            </form>
+
+                            <form action="{{ url_for('comment_post') }}" method="post" style="display:inline;">
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <input type="text" name="content" placeholder="Add a comment" required>
+                                <button type="submit">💬</button><span>{{ post.comment_count }}</span>
+                            </form>
+                        </div>
+
+                        <div class="connection-options">
+                            {% if post.network_status == 'pending' %}
+                                <button class="pending-button" disabled>Pending</button>
+                            {% elif post.network_status == 'accepted' %}
+                                <button class="accepted-button" disabled>Networked</button>
+                            {% else %}
+                                <form action="{{ url_for('network_request', user_id=post.user_id) }}" method="post" style="display:inline;">
+                                    <button type="submit">Connect</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Right Navigation (News Carousel) -->
+        <div class="right-nav">
+            <h3>Latest News</h3>
+            <div class="news-carousel">
+                <div class="carousel-wrapper">
+                    {% for news in news_items %}
+                        <div class="carousel-card">
+                            <img src="{{ url_for('static', filename='uploads/' + news.thumbnail) }}" alt="News Thumbnail" class="news-thumbnail">
+                            <h4 class="news-title">{{ news.title }}</h4>
+                            <p class="news-summary">{{ news.summary }}</p>
+                            <a href="{{ news.link }}" class="read-more-btn" target="_blank">Read More</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls">
+                    <button id="prev-btn" class="carousel-btn">◀</button>
+                    <button id="next-btn" class="carousel-btn">▶</button>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.querySelector('.carousel-wrapper');
+            const cards = document.querySelectorAll('.carousel-card');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            let currentIndex = 0;
+            const cardWidth = cards[0].offsetWidth + 20; // Card width + margin
+
+            // Update Carousel Position
+            const updateCarousel = () => {
+                wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            };
+
+            // Next Button Click
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < cards.length - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Previous Button Click
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

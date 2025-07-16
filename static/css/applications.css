@@ -1,0 +1,144 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Light Grey for background */
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark text for contrast */
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #002b5c; /* Navy Blue background for navbar */
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ffcc80; /* Soft Orange for hover effect */
+}
+
+/* Main Content Area */
+.main-content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White for main content background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a polished look */
+}
+
+.main-content h2 {
+    color: #002b5c; /* Navy Blue for section heading */
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-content {
+    background-color: #f7f7f7; /* Soft Grey for card background */
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-content h2 {
+    font-size: 20px;
+    color: #002b5c; /* Navy Blue for startup name */
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #333; /* Dark text for better readability */
+}
+
+.card-content strong {
+    color: #002b5c; /* Navy Blue for emphasis */
+}
+
+/* Card Hover Effect */
+.card-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Feedback Section */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f7f7f7; /* Soft Grey background for input */
+    resize: none;
+}
+
+button {
+    background-color: #ff6f61; /* Soft Orange for button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ffcc80; /* Lighter Soft Orange on hover */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .card-content {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .card-content {
+        width: 100%;
+    }
+}

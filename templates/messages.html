@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="../static/css/messages.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar for Conversations -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <!-- Removed profile image -->
+                <span class="username">{{ current_user.username }}</span>
+                <a href="{{ url_for('index') }}" class="back-link">Home</a>
+            </div>
+            <!-- Search Users to send messages -->
+            <form id="searchForm" action="{{ url_for('messages') }}" method="GET" class="search-form">
+                <input type="text" name="query" id="query" placeholder="Search users..." required>
+                <button type="submit">Search</button>
+                {% if search_results %}
+                    <div class="search-results">
+                        <h3>Search Results</h3>
+                        <ul>
+                            {% for result in search_results %}
+                                 <li>
+                                    <a href="{{ url_for('messages', chat_partner_id=result.id) }}">{{ result.username }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </form>
+            <!-- Sidebar Conversations List -->
+            <div class="conversations">
+                <h3>Your Messages</h3>
+                <ul>
+                    {% for conversation in conversations %}
+                        <li class="conversation-item">
+                            <a href="{{ url_for('messages', chat_partner_id=conversation.id) }}">
+                                <!-- Removed profile image for conversations -->
+                                <div class="conversation-details">
+                                    <span class="conversation-username">{{ conversation.username }}</span>
+                                    <small>{{ conversation.last_message_content }} · {{ conversation.last_message_timestamp }}</small>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Chat Window -->
+        <div class="chat-window">
+            {% if chat_partner %}
+            <div class="chat-header">
+                <!-- Removed profile image for chat partner -->
+                <span class="chat-username">{{ chat_partner.username }}</span>
+            </div>
+            <div class="chat-messages">
+                {% for message in messages %}
+                    <div class="{% if message.sender_id == session['id'] %} message-sent {% else %} message-received {% endif %}">
+                        <div class="message-content">
+                            <p>{{ message.content }}</p>
+                            <small>{{ message.timestamp }}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="chat-input">
+                <form id="messageForm" action="{{ url_for('messages') }}" method="POST">
+                    <input type="hidden" name="receiver_id" value="{{ chat_partner.id }}">
+                    <input type="text" name="content" placeholder="Type a message" required>
+                    <button type="submit">
+                        <img src="../static/icons/send-icon.svg" alt="Send">
+                    </button>
+                </form>
+            </div>
+            {% else %}
+            <div class="chat-placeholder">
+                <h3>Select a conversation to start messaging.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Main background color */
+    color: black; /* Black text for readability */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height for centering */
+}
+
+/* Login form container */
+.login-container {
+    background-color: white;
+    border: 1px solid #dcdcdc; /* Soft grey border */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form labels and inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcdcdc; /* Soft grey border */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #E6E6FA; /* Lavender for focus state */
+    outline: none;
+    box-shadow: 0 0 5px rgba(230, 230, 250, 0.5);
+}
+
+/* Submit button */
+.btn-primary {
+    background-color: #003366; /* Navy Blue for primary buttons */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #FFCCCB; /* Light Pink for hover effect */
+}

@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white; /* Changed background color to white */
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh;
+    background-color: white; /* Ensure container is also white */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Sidebar for Conversations */
+.sidebar {
+    width: 30%;
+    background-color: white; /* Sidebar also white */
+    padding: 15px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 18px;
+    display: block; /* Username displayed as block */
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: white; /* White background for input */
+    color: #333; /* Darker text color for contrast */
+}
+
+.conversations {
+    overflow-y: auto;
+}
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: white; /* Keep background white */
+}
+
+.conversation-item:hover {
+    background-color: #f0f0f0; /* Slightly lighter hover effect */
+}
+
+.conversation-details {
+    flex-grow: 1;
+}
+
+.conversation-username {
+    font-weight: bold;
+    display: block; /* Block display for conversation usernames */
+    color: #002244; /* Username color #002244 */
+}
+
+.conversation-details small {
+    display: block;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Chat Window */
+.chat-window {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white; /* Ensure chat window is white */
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: white; /* White background */
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-username {
+    font-weight: bold;
+    font-size: 20px;
+    display: block; /* Username in block format */
+    color: #002244; /* Username color #002244 */
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: white; /* White background for chat area */
+}
+
+.message-sent .message-content,
+.message-received .message-content {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.message-sent .message-content {
+    background-color: #002244; /* Button and message color #002244 */
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.message-received .message-content {
+    background-color: #e0e0e0;
+    color: #333;
+    border-bottom-left-radius: 0;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-content small {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Chat Input */
+.chat-input {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background-color: white; /* Keep background white */
+    display: flex;
+    align-items: center;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    background-color: white; /* White input */
+    color: #333; /* Darker text color for contrast */
+}
+
+.chat-input button {
+    background-color: #002244; /* Button color #002244 */
+    color: white; /* White icon or text inside button */
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 50%; /* Rounded button */
+    padding: 10px;
+}
+
+.chat-input button img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1); /* Make sure the icon is white */
+}

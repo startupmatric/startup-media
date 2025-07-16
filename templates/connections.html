@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Connections</title>
+</head>
+<body>
+    <h1>Your Connections</h1>
+    <ul>
+        {% if connections %}
+            {% for connection in connections %}
+                <li>{{ connection['username'] }} 
+                    <form action="{{ url_for('remove_connection', user_id=connection['id']) }}" method="POST" style="display:inline;">
+                        <button type="submit">Remove Connection</button>
+                    </form>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>No connections found.</li>
+        {% endif %}
+    </ul>
+    <a href="{{ url_for('user_profile', username=session['username']) }}">Back to Profile</a>
+</body>
+</html>

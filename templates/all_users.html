@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <ul>
+        {% for user in all_users %}
+            <li>
+                {{ user.username }}
+                {% if user.is_following %}
+                    <form method="POST" action="{{ url_for('unfollow', username=user.username) }}" style="display:inline;">
+                        <button type="submit">Unfollow</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="{{ url_for('follow', username=user.username) }}" style="display:inline;">
+                        <button type="submit">Follow</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Startup Idea</title>
+    <link rel="stylesheet" href="../static/css/idea_submit.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Navigation Bar -->
+    <div class="left-nav">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('messages') }}">Messages</a></li>
+            <li><a href="{{ url_for('network_requests') }}">Network Requests</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            
+        </ul>
+    </div>
+        <h1>Submit Your Startup Idea</h1>
+
+        <!-- Form to submit startup idea -->
+        <form action="{{ url_for('submit_idea') }}" method="POST">
+            <div class="form-group">
+                <label for="startup_name">Startup Name</label>
+                <input type="text" id="startup_name" name="startup_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="founders_team">Founders/Team</label>
+                <textarea id="founders_team" name="founders_team" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="problem_statement">Problem Statement</label>
+                <textarea id="problem_statement" name="problem_statement" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="solution_overview">Solution Overview</label>
+                <textarea id="solution_overview" name="solution_overview" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="target_market">Target Market</label>
+                <textarea id="target_market" name="target_market" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="business_model">Business Model</label>
+                <textarea id="business_model" name="business_model" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="revenue_streams">Revenue Streams</label>
+                <textarea id="revenue_streams" name="revenue_streams" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="market_analysis">Market Analysis</label>
+                <textarea id="market_analysis" name="market_analysis" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="competitors">Competitors</label>
+                <textarea id="competitors" name="competitors" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="financial_projections">Financial Projections</label>
+                <textarea id="financial_projections" name="financial_projections" class="form-control" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="funding_needed">Funding Needed</label>
+                <input type="number" id="funding_needed" name="funding_needed" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Idea</button>
+        </form>
+
+        <!-- Feedback Section -->
+        <h2>Your Feedback</h2>
+        {% if feedback %}
+            <ul class="feedback-list">
+                {% for item in feedback %}
+                    <li>
+                        <strong>{{ item.from }}:</strong> {{ item.comment }} 
+                        <br><small>{{ item.timestamp }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No feedback available yet.</p>
+        {% endif %}
+</body>
+</html>

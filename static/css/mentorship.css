@@ -1,0 +1,139 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Main background color */
+    color: black; /* Black text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #003366; /* Navy Blue for header */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container for layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Left and Right navigation styles */
+.left-nav, .right-nav {
+    width: 20%;
+    background-color: white; /* White for the navigation bar */
+    padding: 20px;
+    color: black; /* Black text color for contrast */
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    border-right: 1px solid #dcdcdc; /* Soft grey border for separation */
+}
+
+.left-nav ul, .right-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-nav ul li, .right-nav ul li {
+    margin: 10px 0;
+}
+
+.left-nav ul li a, .right-nav ul li a {
+    color: black; /* Black color for links */
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.left-nav ul li a:hover, .right-nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.right-nav h3 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+/* Middle content */
+.middle-content {
+    width: 55%;
+    background-color: white; /* White background for content */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow-y: auto;
+    max-height: 100vh;
+    margin: 0 20px;
+}
+
+/* Mentor submission and profiles */
+.mentor-submission, .mentor-profiles {
+    margin-bottom: 20px;
+}
+
+.mentor-submission form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mentor-submission label {
+    margin-top: 10px;
+}
+
+.mentor-submission input, .mentor-submission textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.mentor-submission button {
+    background-color: black; /* Black for buttons */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.mentor-submission button:hover {
+    background-color: #333; /* Darker black for hover effect */
+}
+
+.mentor-profiles .mentor {
+    border: 1px solid #dcdcdc; /* Soft Grey for borders */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white; /* White background for mentor profiles */
+}
+
+.mentor-profiles .mentor h4 {
+    margin: 0;
+}
+
+.mentor-profiles .mentor a {
+    color: #003366; /* Navy*/
+}
